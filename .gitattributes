@@ -17,6 +17,6 @@
 *.gif binary
 *.ico binary
 * linguist-vendored
-*.js linguist-vendored=false
+*.cs linguist-vendored=false
 
 core.autocrlf=true
