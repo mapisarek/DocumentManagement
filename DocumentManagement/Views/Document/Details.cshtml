@@ -1,0 +1,72 @@
+﻿@model DocumentManagement.ViewModels.DocumentViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Document Details</h2>
+
+@if ((TempData["success"] != null))
+{
+    <div class="alert alert-success" role="alert">
+        <strong>Success!</strong> @TempData["success"];
+    </div>}
+@if ((@TempData["failed"] != null))
+{
+    <div class="alert alert-warning" role="alert">
+        <strong>Failed!</strong> @TempData["failed"];
+    </div>}
+
+<table id="tablePreview" class="table">
+    <tbody>
+        <tr>
+            <th rowspan="6">Avatar dokumentu</th>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(modelItem => Model.DocumentTitle)</th>
+            <th scope="col">@Model.DocumentTitle</th>
+        </tr>
+        <tr>
+
+            <th>@Html.DisplayNameFor(modelItem => Model.DocumentDescription)</th>
+            <th scope="col">@Model.DocumentDescription</th>
+        </tr>
+        <tr>
+
+            <th>@Html.DisplayNameFor(modelItem => Model.DocumentPublicationTime)</th>
+            <th scope="col">@Model.DocumentPublicationTime.ToShortDateString()</th>
+        </tr>
+        <tr>
+
+            <th>@Html.DisplayNameFor(modelItem => Model.DocumentName)</th>
+            <th scope="col">@Model.DocumentName</th>
+
+        </tr>
+        <tr>
+
+            <th>@Html.DisplayNameFor(modelItem => Model.CategoryName)</th>
+            <th scope="col">@Model.CategoryName</th>
+
+        </tr>
+    </tbody>
+</table><br />
+
+
+<table id="tablePreview" class="table">
+    <tbody>
+        <tr>
+            <th scope="col" rowspan="2">Available actions</th>
+            <td scope="col">Download</td>
+            <td scope="col">
+                <a href="/Document/Download/@Model.DocumentId" class="btn btn-danger">Download</a>
+            </td>
+        </tr>
+        <tr>
+            <td scope="col">Send on email</td>
+            <td scope="col">
+                <a href="/Document/SendFile?id=@Model.DocumentId" class="btn btn-dark">Email</a>
+            </td>
+            </td>
+        </tr>
+    </tbody>
+</table>
