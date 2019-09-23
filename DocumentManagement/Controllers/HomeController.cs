@@ -5,20 +5,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DocumentManagement.Models;
+using DocumentManagement.Services;
+using DocumentManagement.DAL;
 
 namespace DocumentManagement.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private Statistics statistics;
+        private readonly DocumentService documentService;
+        private readonly CategoryService categoryService;
+
+        public HomeController(DMContext context)
         {
-            return View();
+            documentService = new DocumentService(context);
+            categoryService = new CategoryService(context);
         }
 
-        public IActionResult Privacy()
+
+        public IActionResult Index()
         {
-            return View();
+            statistics = new Statistics();
+            statistics.CategoriesAmount = categoryService.getCategoryAmount();
+            statistics.DocumentsAmount = documentService.getDocumentAmount();
+            return View(statistics);
         }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
