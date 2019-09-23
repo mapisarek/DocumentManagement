@@ -1,8 +1,72 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model DocumentManagement.Models.Statistics
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Tablica</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    </div>
 </div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-primary-gradient">
+                    <div class="inner">
+                        <h3>@Model.DocumentsAmount</h3>
+
+                        @if (@Model.DocumentsAmount > 1)
+                        {
+                            <p>Documents</p>
+                        }
+                        else
+                        {
+                            <p>Document</p>
+                        }
+
+
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-database" aria-hidden="true"></i>
+
+                    </div>
+                    <a href="//localhost:44305/Document/Index" class="small-box-footer">Go to <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@Model.CategoriesAmount<sup style="font-size: 20px"></sup></h3>
+
+                        @if (@Model.DocumentsAmount > 1)
+                        {
+                            <p>Categories</p>
+                        }
+                        else
+                        {
+                            <p>Category</p>
+                        }
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+
+                    </div>
+                    <a href="/Category/Details" class="small-box-footer">Go to <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
